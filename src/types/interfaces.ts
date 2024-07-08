@@ -85,3 +85,28 @@ export interface BaseMovieProps {
     rating: number,
     movieId: number,
   }
+
+  export interface BaseTVSeriesProps {
+    name: string;
+    id: number;
+    original_language: string;
+    overview: string;
+    popularity: number;
+    poster_path?: string;
+    vote_count: number;
+    genre_ids?: number[];
+    origin_country?: string[];
+  }
+
+  export interface BaseTVSeriesListProps {
+    tvseries: BaseTVSeriesProps[];
+    action: (m: BaseTVSeriesProps) => React.ReactNode;
+  }
+
+
+  export interface DiscoverTVSeries {
+    page: number;	
+    total_pages: number;
+    total_results: number;
+    results: BaseTVSeriesProps[];
+  }

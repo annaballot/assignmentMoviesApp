@@ -1,12 +1,12 @@
 import React from "react";
 import PageTemplate from "../components/templateMovieListPage";
-import { getMovies } from "../api/tmdb-api";
+import { getTVSeries } from "../api/tmdb-api";
 import useFiltering from "../hooks/useFiltering";
 import MovieFilterUI, {
   titleFilter,
   genreFilter,
 } from "../components/movieFilterUI";
-import { DiscoverMovies } from "../types/interfaces";
+import { DiscoverTVSeries } from "../types/interfaces";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
 import AddToFavouritesIcon from '../components/cardIcons/addToFavourites'
@@ -24,7 +24,7 @@ const genreFiltering = {
 };
 
 const TVSeriesDiscoverPage: React.FC = () => {
-  const { data, error, isLoading, isError } = useQuery<DiscoverMovies, Error>("discover", getMovies);
+  const { data, error, isLoading, isError } = useQuery<DiscoverTVSeries, Error>("discover", getTVSeries);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [titleFiltering, genreFiltering]
   );
@@ -56,7 +56,7 @@ const TVSeriesDiscoverPage: React.FC = () => {
       <PageTemplate
         title="Discover Movies"
         movies={displayedMovies}
-        action={(movie: BaseMovieProps) => {
+        action={(movie: BaseTVSeriesProps) => {
           return <AddToFavouritesIcon {...movie} />
         }}
       />
