@@ -58,7 +58,7 @@ const MoviesContextProvider: React.FC<React.PropsWithChildren> = ({ children }) 
                 mustWatch,
                 addToFavourites,
                 removeFromFavourites,
-                addReview,    // NEW
+                addReview,  
                 addToMustWatch,
                 
             }}
