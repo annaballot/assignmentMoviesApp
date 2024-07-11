@@ -10,14 +10,14 @@ const styles = {
   }
 };
 
-const TVSeriesListPageTemplate: React.FC<TVSeriesListPageTemplateProps> = ({ tvseries, name })=> {
+const TVSeriesListPageTemplate: React.FC<TVSeriesListPageTemplateProps> = ({ tvseries, title, action })=> {
   return (
     <Grid container sx={styles.root}>
       <Grid item xs={12}>
-        <Header title={name} />
+        <Header title={title} />
       </Grid>
       <Grid item container spacing={5}>
-      <TVSeriesList  tvseries={tvseries}></TVSeriesList>
+      <TVSeriesList action={action} tvseries={tvseries}></TVSeriesList>
       </Grid>
     </Grid>
   );

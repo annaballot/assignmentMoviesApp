@@ -28,12 +28,12 @@ const styles = {
 
 interface TVSeriesFilterUIProps {
     onFilterValuesChange: (f: string, s: string) => void;
-    titleFilter: string;
+    nameFilter: string;
     genreFilter: string;
 }
 
 
-const TVSeriesFilterUI: React.FC<TVSeriesFilterUIProps> = ({ onFilterValuesChange, titleFilter, genreFilter }) => {
+const TVSeriesFilterUI: React.FC<TVSeriesFilterUIProps> = ({ onFilterValuesChange, nameFilter, genreFilter }) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
 
     return (
@@ -53,7 +53,7 @@ const TVSeriesFilterUI: React.FC<TVSeriesFilterUIProps> = ({ onFilterValuesChang
             >
                 <FilterCard
                     onUserInput={onFilterValuesChange}
-                    titleFilter={titleFilter}
+                    titleFilter={nameFilter}
                     genreFilter={genreFilter}
                 />
             </Drawer>

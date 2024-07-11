@@ -23,6 +23,8 @@ const genreFiltering = {
 };
 
 const TVSeriesDiscoverPage: React.FC = () => {
+  console.log("has hit the tv series page")
+
   const { data, error, isLoading, isError } = useQuery<DiscoverTVSeries, Error>("discover", getTVSeries);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [nameFiltering, genreFiltering]
@@ -40,7 +42,7 @@ const TVSeriesDiscoverPage: React.FC = () => {
   const changeFilterValues = (type: string, value: string) => {
     const changedFilter = { name: type, value: value };
     const updatedFilterSet =
-      type === "title"
+      type === "name"
         ? [changedFilter, filterValues[1]]
         : [filterValues[0], changedFilter];
     setFilterValues(updatedFilterSet);
@@ -49,7 +51,8 @@ const TVSeriesDiscoverPage: React.FC = () => {
   const tvSeries = data ? data.results : [];
   const displayedTVSeries = filterFunction(tvSeries);
 
-
+console.log("tvSeries")
+console.log(tvSeries)
 
   return (
     <>
