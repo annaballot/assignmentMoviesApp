@@ -100,7 +100,6 @@ export interface BaseMovieProps {
 
   export interface BaseTVSeriesListProps {
     tvseries: BaseTVSeriesProps[];
-    action: (m: BaseTVSeriesProps) => React.ReactNode;
   }
 
 
@@ -109,4 +108,16 @@ export interface BaseMovieProps {
     total_pages: number;
     total_results: number;
     results: BaseTVSeriesProps[];
+  }
+
+  
+
+
+
+  export interface BaseTVSeriesListProps {
+    tvseries: BaseTVSeriesProps[];
+  }
+
+  export interface TVSeriesListPageTemplateProps extends BaseTVSeriesListProps {
+    name: string;
   }

@@ -1,33 +1,32 @@
 import React from "react";
-import PageTemplate from "../components/templateMovieListPage";
+import PageTemplate from "../components/templateTVSeriesListPage";
 import { getTVSeries } from "../api/tmdb-api";
-import useFiltering from "../hooks/useFiltering";
-import MovieFilterUI, {
-  titleFilter,
-  genreFilter,
-} from "../components/movieFilterUI";
+// import useFiltering from "../hooks/useFiltering";
+// import TVSeriesFilterUI, {
+//   nameFilter,
+//   genreFilter,
+// } from "../components/tvseriesFilterUI";
 import { DiscoverTVSeries } from "../types/interfaces";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
-import AddToFavouritesIcon from '../components/cardIcons/addToFavourites'
 
 
-const titleFiltering = {
-  name: "title",
-  value: "",
-  condition: titleFilter,
-};
-const genreFiltering = {
-  name: "genre",
-  value: "0",
-  condition: genreFilter,
-};
+// const nameFiltering = {
+//   name: "name",
+//   value: "",
+//   condition: nameFilter,
+// };
+// const genreFiltering = {
+//   name: "genre",
+//   value: "0",
+//   condition: genreFilter,
+// };
 
 const TVSeriesDiscoverPage: React.FC = () => {
   const { data, error, isLoading, isError } = useQuery<DiscoverTVSeries, Error>("discover", getTVSeries);
-  const { filterValues, setFilterValues, filterFunction } = useFiltering(
-    [titleFiltering, genreFiltering]
-  );
+  // const { filterValues, setFilterValues, filterFunction } = useFiltering(
+  //   [nameFiltering, genreFiltering]
+  // );
 
   if (isLoading) {
     return <Spinner />;
@@ -38,33 +37,32 @@ const TVSeriesDiscoverPage: React.FC = () => {
   }
 
 
-  const changeFilterValues = (type: string, value: string) => {
-    const changedFilter = { name: type, value: value };
-    const updatedFilterSet =
-      type === "title"
-        ? [changedFilter, filterValues[1]]
-        : [filterValues[0], changedFilter];
-    setFilterValues(updatedFilterSet);
-  };
+  // const changeFilterValues = (type: string, value: string) => {
+  //   const changedFilter = { name: type, value: value };
+  //   const updatedFilterSet =
+  //     type === "title"
+  //       ? [changedFilter, filterValues[1]]
+  //       : [filterValues[0], changedFilter];
+  //   setFilterValues(updatedFilterSet);
+  // };
 
-  const movies = data ? data.results : [];
-  const displayedMovies = filterFunction(movies);
+  const tvSeries = data ? data.results : [];
+  // const displayedTVSeries = filterFunction(tvSeries);
+  const displayedTVSeries = tvSeries;
 
 
   return (
     <>
       <PageTemplate
-        title="Discover Movies"
-        movies={displayedMovies}
-        action={(movie: BaseTVSeriesProps) => {
-          return <AddToFavouritesIcon {...movie} />
-        }}
+        name="Discover TV Series"
+        tvseries={displayedTVSeries}
+
       />
-      <MovieFilterUI
+      {/* <TVSeriesFilterUI
         onFilterValuesChange={changeFilterValues}
-        titleFilter={filterValues[0].value}
+        nameFilter={filterValues[0].value}
         genreFilter={filterValues[1].value}
-      />
+      /> */}
     </>
   );
 };
