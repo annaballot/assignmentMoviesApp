@@ -23,7 +23,6 @@ const genreFiltering = {
 };
 
 const TVSeriesDiscoverPage: React.FC = () => {
-  console.log("has hit the tv series page")
 
   const { data, error, isLoading, isError } = useQuery<DiscoverTVSeries, Error>("discoverTV", getTVSeries);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
@@ -51,13 +50,11 @@ const TVSeriesDiscoverPage: React.FC = () => {
   const tvSeries = data ? data.results : [];
   const displayedTVSeries = filterFunction(tvSeries);
 
-console.log("tvSeries")
-console.log(tvSeries)
 
   return (
     <>
       <PageTemplate
-        name="Discover TV Series"
+        title="Discover TV Series"
         tvseries={displayedTVSeries}
 
       />

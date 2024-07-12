@@ -6,7 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import CardHeader from "@mui/material/CardHeader";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
+import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 import StarRateIcon from "@mui/icons-material/StarRate";
 import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png';
@@ -66,10 +66,10 @@ const TVSeriesCard: React.FC<TVSeriesCardProps> = ({tvseries}) => {
       <CardContent>
         <Grid container>
           <Grid item xs={6}>
-            {/* <Typography variant="h6" component="p">
-              <CalendarIcon fontSize="small" />
-              {tvseries.release_date}
-            </Typography> */}
+            { <Typography variant="h6" component="p">
+              <TravelExploreIcon fontSize="small" />
+              {tvseries.origin_country}
+            </Typography> }
           </Grid>
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
