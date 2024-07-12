@@ -25,7 +25,7 @@ const genreFiltering = {
 const TVSeriesDiscoverPage: React.FC = () => {
   console.log("has hit the tv series page")
 
-  const { data, error, isLoading, isError } = useQuery<DiscoverTVSeries, Error>("discover", getTVSeries);
+  const { data, error, isLoading, isError } = useQuery<DiscoverTVSeries, Error>("discoverTV", getTVSeries);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [nameFiltering, genreFiltering]
   );
@@ -61,11 +61,11 @@ console.log(tvSeries)
         tvseries={displayedTVSeries}
 
       />
-      { <TVSeriesFilterUI
+       <TVSeriesFilterUI
         onFilterValuesChange={changeFilterValues}
         nameFilter={filterValues[0].value}
         genreFilter={filterValues[1].value}
-      /> }
+      /> 
     </>
   );
 };
