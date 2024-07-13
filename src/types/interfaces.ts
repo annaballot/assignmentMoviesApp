@@ -121,3 +121,28 @@ export interface BaseMovieProps {
   export interface TVSeriesListPageTemplateProps extends BaseTVSeriesListProps {
     name: string;
   }
+
+
+
+  export interface TVSeriesDetailsProps extends BaseTVSeriesProps {
+    genres: {
+      id: number;
+      name: string;
+    }[];
+    production_countries: {
+      id: number;
+      name: string;
+    }[];
+  }
+
+  
+
+  export interface TVSeriesImage {
+    file_path: string;
+    aspect_ratio?: number; 
+    height?: number;
+    iso_639_1?: string;
+    vote_average?: number;
+    vote_count?: number;
+    width?: number;
+  }

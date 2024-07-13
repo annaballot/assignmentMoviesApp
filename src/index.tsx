@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Route, Navigate, Routes, Link } from "react-router-dom";
 import HomePage from "./pages/homePage";
 import MoviePage from "./pages/movieDetailsPage";
+import TVSeriesPage from "./pages/tvseriesDetailsPage";
 import FavouriteMoviesPage from "./pages/favouriteMoviesPage"; // NEW
 import MovieReviewPage from "./pages/movieReviewPage";
 import MovieUpcomingPage from "./pages/movieUpcomingPage";
@@ -39,6 +40,7 @@ const App = () => {
               <Route path="/movies/upcoming" element={<MovieUpcomingPage/>} />
               <Route path="/reviews/form" element={<AddMovieReviewPage/>} />
               <Route path="/tvseries/discover" element={<TVSeriesDiscoverPage/>} />
+              <Route path="/tvseries/:id" element={<TVSeriesPage />} />
             </Routes>
         </MoviesContextProvider>
       </BrowserRouter>
