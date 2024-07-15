@@ -31,11 +31,11 @@ const styles = {
 
 interface FilterTVSeriessCardProps {
   onUserInput: (f: FilterOption, s: string)  => void; // Add this line
-  titleFilter: string;
+  nameFilter: string;
   genreFilter: string;
 }
 
-const FilterTVSeriesCard: React.FC<FilterTVSeriessCardProps> = ({ titleFilter, genreFilter, onUserInput }) => {
+const FilterTVSeriesCard: React.FC<FilterTVSeriessCardProps> = ({ nameFilter, genreFilter, onUserInput }) => {
   const { data, error, isLoading, isError } = useQuery<GenreData, Error>("genres", getGenres);
 
   if (isLoading) {
@@ -55,7 +55,7 @@ const FilterTVSeriesCard: React.FC<FilterTVSeriessCardProps> = ({ titleFilter, g
   };
 
   const handleTextChange = (e: ChangeEvent<HTMLInputElement>) => {
-    handleChange(e, "title", e.target.value)
+    handleChange(e, "name", e.target.value)
   }
 
   const handleGenreChange = (e: SelectChangeEvent) => {
@@ -75,7 +75,7 @@ const FilterTVSeriesCard: React.FC<FilterTVSeriessCardProps> = ({ titleFilter, g
             id="filled-search"
             label="Search field"
             type="search"
-            value={titleFilter}
+            value={nameFilter}
             variant="filled"
             onChange={handleTextChange}
           />
