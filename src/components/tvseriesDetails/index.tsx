@@ -55,18 +55,19 @@ const TVSeriesDetails: React.FC<TVSeriesDetailsProps> = (tvseries) => {
                     </li>
                 ))}
             </Paper>
-            {/* <Paper component="ul" sx={styles.chipSet}>
-                <Chip icon={<AccessTimeIcon />} label={`${tvseries.runtime} min.`} />
+            { <Paper component="ul" sx={styles.chipSet}>
+                <Chip 
+                    label={`Number of Episodes: ${tvseries.number_of_episodes}`} 
+                />
                 <Chip
-                    icon={<MonetizationIcon />}
-                    label={`${tvseries.revenue.toLocaleString()}`}
+                    label={`Number of Seasons: ${tvseries.number_of_seasons}`}
                 />
                 <Chip
                     icon={<StarRate />}
-                    label={`${tvseries.vote_average} (${tvseries.vote_count}`}
+                    label={`${tvseries.vote_average} (${tvseries.vote_count})`}
                 />
-                <Chip label={`Released: ${tvseries.release_date}`} />
-            </Paper> */}
+                <Chip label={`First Air Date: ${tvseries.first_air_date}`} />
+            </Paper> }
             <Fab
                 color="secondary"
                 variant="extended"

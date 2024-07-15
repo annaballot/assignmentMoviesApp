@@ -96,6 +96,10 @@ export interface BaseMovieProps {
     vote_count: number;
     genre_ids?: number[];
     origin_country?: string[];
+    first_air_date?: string;
+    number_of_seasons: number;
+    number_of_episodes: number;
+    vote_average: number;
   }
 
   export interface BaseTVSeriesListProps {
