@@ -33,9 +33,10 @@ interface FilterTVSeriessCardProps {
   onUserInput: (f: FilterOption, s: string)  => void; // Add this line
   nameFilter: string;
   genreFilter: string;
+  languageFilter: string;
 }
 
-const FilterTVSeriesCard: React.FC<FilterTVSeriessCardProps> = ({ nameFilter, genreFilter, onUserInput }) => {
+const FilterTVSeriesCard: React.FC<FilterTVSeriessCardProps> = ({ nameFilter, genreFilter, languageFilter, onUserInput }) => {
   const { data, error, isLoading, isError } = useQuery<GenreData, Error>("genres", getGenres);
 
   if (isLoading) {
@@ -61,6 +62,10 @@ const FilterTVSeriesCard: React.FC<FilterTVSeriessCardProps> = ({ nameFilter, ge
   const handleGenreChange = (e: SelectChangeEvent) => {
     handleChange(e, "genre", e.target.value)
   };
+
+  const handleLanguageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    handleChange(e, "original_language", e.target.value)
+  }
 
   return (
     <>
@@ -95,6 +100,18 @@ const FilterTVSeriesCard: React.FC<FilterTVSeriessCardProps> = ({ nameFilter, ge
                 );
               })}
             </Select>
+          </FormControl>
+          <FormControl sx={styles.formControl}>
+            <InputLabel id="language-label">Language</InputLabel>
+            <TextField
+              sx={styles.formControl}
+              id="filled-search"
+              label="Language field"
+              type="search"
+              value={languageFilter}
+              variant="filled"
+              onChange={handleLanguageChange}
+           />
           </FormControl>
         </CardContent>
       </Card>

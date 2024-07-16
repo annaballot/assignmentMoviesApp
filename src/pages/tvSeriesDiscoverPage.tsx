@@ -5,6 +5,7 @@ import useFiltering from "../hooks/useFiltering";
 import TVSeriesFilterUI, {
   nameFilter,
   genreFilter,
+  languageFilter,
 } from "../components/tvseriesFilterUI";
 import { DiscoverTVSeries } from "../types/interfaces";
 import { useQuery } from "react-query";
@@ -22,10 +23,17 @@ const genreFiltering = {
   condition: genreFilter,
 };
 
+// const languageFiltering = {
+//   name: "original_language",
+//   value: "",
+//   condition: languageFilter,
+// };
+
 const TVSeriesDiscoverPage: React.FC = () => {
 
   const { data, error, isLoading, isError } = useQuery<DiscoverTVSeries, Error>("discoverTV", getTVSeries);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
+    // [nameFiltering, genreFiltering, languageFiltering]
     [nameFiltering, genreFiltering]
   );
 
@@ -62,6 +70,7 @@ const TVSeriesDiscoverPage: React.FC = () => {
         onFilterValuesChange={changeFilterValues}
         nameFilter={filterValues[0].value}
         genreFilter={filterValues[1].value}
+        // languageFilter={filterValues[2].value}
       /> 
     </>
   );

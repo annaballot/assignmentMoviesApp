@@ -14,6 +14,10 @@ export const genreFilter = (tvseries: BaseTVSeriesProps, value: string) => {
     return genreId > 0 && genreIds ? genreIds.includes(genreId) : true;
 };
 
+// export const languageFilter = (tvseries: BaseTVSeriesProps, value: string): boolean => {
+//     return tvseries.original_language.toLowerCase().search(value.toLowerCase()) !== -1;
+// };
+
 const styles = {
     root: {
         backgroundColor: "#bfbfbf",
@@ -30,10 +34,11 @@ interface TVSeriesFilterUIProps {
     onFilterValuesChange: (f: string, s: string) => void;
     nameFilter: string;
     genreFilter: string;
+    // languageFilter: string;
 }
 
-
 const TVSeriesFilterUI: React.FC<TVSeriesFilterUIProps> = ({ onFilterValuesChange, nameFilter, genreFilter }) => {
+// const TVSeriesFilterUI: React.FC<TVSeriesFilterUIProps> = ({ onFilterValuesChange, nameFilter, genreFilter, languageFilter }) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
 
     return (
@@ -55,6 +60,7 @@ const TVSeriesFilterUI: React.FC<TVSeriesFilterUIProps> = ({ onFilterValuesChang
                     onUserInput={onFilterValuesChange}
                     titleFilter={nameFilter}
                     genreFilter={genreFilter}
+                    // languageFilter={languageFilter}
                 />
             </Drawer>
         </>
