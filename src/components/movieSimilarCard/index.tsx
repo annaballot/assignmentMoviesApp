@@ -35,7 +35,7 @@ interface MovieCardProps {
   action: (m: BaseMovieProps) => React.ReactNode;
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({movie, action}) => {
+const MovieSimilarCard: React.FC<MovieCardProps> = ({movie, action}) => {
  
 
 
@@ -75,17 +75,17 @@ const MovieCard: React.FC<MovieCardProps> = ({movie, action}) => {
           </Grid>
         </Grid>
       </CardContent>
-      {/* <CardActions disableSpacing>
-      {action(movie)}
+      { <CardActions disableSpacing>
+      {/* {action(movie)} */}
         <Link to={`/movies/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">
             More Info ...
           </Button>
         </Link>
-      </CardActions> */}
+      </CardActions> }
 
     </Card>
   );
 }
 
-export default MovieCard;
+export default MovieSimilarCard;
