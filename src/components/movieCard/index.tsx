@@ -99,11 +99,17 @@ const MovieCard: React.FC<MovieCardProps> = ({movie, action}) => {
           </Grid>
         </Grid>
       </CardContent>
-      <CardActions disableSpacing>
+      <CardActions >
       {action(movie)}
         <Link to={`/movies/${movie.id}`}>
-          <Button variant="outlined" size="medium" color="primary">
+          <Button variant="contained" size="small" color="primary">
             More Info ...
+          </Button>
+        </Link>
+
+        <Link to={`/movies/${movie.id}/similar`}>
+          <Button variant="contained" size="small" color="primary" >
+            Similar Movies
           </Button>
         </Link>
       </CardActions>
