@@ -7,6 +7,7 @@ import TVSeriesPage from "./pages/tvseriesDetailsPage";
 import FavouriteMoviesPage from "./pages/favouriteMoviesPage"; // NEW
 import MovieReviewPage from "./pages/movieReviewPage";
 import MovieUpcomingPage from "./pages/movieUpcomingPage";
+import MovieSimilarPage from "./pages/movieSimilarPage";
 import SiteHeader from './components/siteHeader'
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from 'react-query/devtools';
@@ -41,6 +42,8 @@ const App = () => {
               <Route path="/reviews/form" element={<AddMovieReviewPage/>} />
               <Route path="/tvseries/discover" element={<TVSeriesDiscoverPage/>} />
               <Route path="/tvseries/:id" element={<TVSeriesPage />} />
+              <Route path="/movies/:id/similar" element={<MovieSimilarPage />} />
+              
             </Routes>
         </MoviesContextProvider>
       </BrowserRouter>

@@ -150,3 +150,5 @@ export interface BaseMovieProps {
     vote_count?: number;
     width?: number;
   }
+
+
