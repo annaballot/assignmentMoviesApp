@@ -1,12 +1,13 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 // import MovieSimilar from "../components/movieSimilar";
-import PageTemplate from "../components/templateSimilarMoviesPage";
+import PageTemplate from "../components/templateMovieListPage";
 import { getSimilarMovies } from '../api/tmdb-api'
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner';
 // import { MovieDetailsProps } from "../types/interfaces";
 import { DiscoverMovies } from "../types/interfaces";
+import AddToFavouritesIcon from '../components/cardIcons/addToFavourites'
 
 
 const MovieSimilarPage: React.FC= () => {
@@ -36,6 +37,9 @@ const MovieSimilarPage: React.FC= () => {
       <PageTemplate
         title="Similar Movies"
         movies={similarmovies}
+        action={(movie: BaseMovieProps) => {
+          return <AddToFavouritesIcon {...movie} />
+        }}
       />
     </>
   );
