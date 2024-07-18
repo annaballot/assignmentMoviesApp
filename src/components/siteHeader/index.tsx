@@ -28,10 +28,10 @@ const SiteHeader: React.FC = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
   const menuOptions = [
-    { label: "Home", path: "/" },
-    { label: "Favorites", path: "/movies/favourites" },
-    { label: "Upcoming", path: "/movies/upcoming" },
-    { label: "TV Series", path: "/tvseries/discover" },
+    { label: "  Discover Movies  ", path: "/" },
+    { label: "  Favorite Movies  ", path: "/movies/favourites" },
+    { label: "  Upcoming Movies  ", path: "/movies/upcoming" },
+    { label: "  Discover TV Series  ", path: "/tvseries/discover" },
   ];
 
   const handleMenuSelect = (pageURL: string) => {
