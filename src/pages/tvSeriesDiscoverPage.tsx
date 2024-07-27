@@ -23,19 +23,26 @@ const genreFiltering = {
   condition: genreFilter,
 };
 
-// const languageFiltering = {
-//   name: "original_language",
-//   value: "",
-//   condition: languageFilter,
-// };
+const languageFiltering = {
+  name: "original_language",
+  value: "",
+  condition: languageFilter,
+};
 
 const TVSeriesDiscoverPage: React.FC = () => {
 
   const { data, error, isLoading, isError } = useQuery<DiscoverTVSeries, Error>("discoverTV", getTVSeries);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
-    // [nameFiltering, genreFiltering, languageFiltering]
-    [nameFiltering, genreFiltering]
+    [nameFiltering, genreFiltering, languageFiltering]
+    // [nameFiltering, genreFiltering]
   );
+
+  console.log("nameFiltering");
+  console.log(nameFiltering);
+  console.log("genreFiltering");
+  console.log(genreFiltering);
+  console.log("languageFiltering");
+  console.log(languageFiltering);
 
   if (isLoading) {
     return <Spinner />;
@@ -70,7 +77,7 @@ const TVSeriesDiscoverPage: React.FC = () => {
         onFilterValuesChange={changeFilterValues}
         nameFilter={filterValues[0].value}
         genreFilter={filterValues[1].value}
-        // languageFilter={filterValues[2].value}
+        languageFilter={filterValues[2].value}
       /> 
     </>
   );

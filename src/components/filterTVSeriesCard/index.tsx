@@ -64,6 +64,8 @@ const FilterTVSeriesCard: React.FC<FilterTVSeriessCardProps> = ({ nameFilter, ge
   };
 
   const handleLanguageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(handleLanguageChange);
+    console.log(e);
     handleChange(e, "original_language", e.target.value)
   }
 
@@ -101,18 +103,15 @@ const FilterTVSeriesCard: React.FC<FilterTVSeriessCardProps> = ({ nameFilter, ge
               })}
             </Select>
           </FormControl>
-          <FormControl sx={styles.formControl}>
-            <InputLabel id="language-label">Language</InputLabel>
-            <TextField
-              sx={styles.formControl}
-              id="filled-search"
-              label="Language field"
-              type="search"
-              value={languageFilter}
-              variant="filled"
-              onChange={handleLanguageChange}
-           />
-          </FormControl>
+          <TextField
+            sx={styles.formControl}
+            id="filled-search-lng"
+            label="Search Original Language"
+            type="search2"
+            value={languageFilter}
+            variant="filled"
+            onChange={handleLanguageChange}
+          />
         </CardContent>
       </Card>
       <Card sx={styles.root} variant="outlined">
