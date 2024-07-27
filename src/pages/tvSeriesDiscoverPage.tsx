@@ -55,12 +55,18 @@ const TVSeriesDiscoverPage: React.FC = () => {
 
   const changeFilterValues = (type: string, value: string) => {
     const changedFilter = { name: type, value: value };
-    const updatedFilterSet =
-      type === "name"
-        ? [changedFilter, filterValues[1]]
-        : [filterValues[0], changedFilter];
-    setFilterValues(updatedFilterSet);
+      if (type === "name") {
+        const  updatedFilterSet = [changedFilter, filterValues[1], filterValues[2]];
+        setFilterValues(updatedFilterSet);
+      } else if (type === "genre") {
+        const  updatedFilterSet = [filterValues[0], changedFilter, filterValues[2]];
+        setFilterValues(updatedFilterSet);
+      } else {
+        const  updatedFilterSet = [filterValues[0], filterValues[1], changedFilter];
+        setFilterValues(updatedFilterSet);
+      }
   };
+
 
   const tvSeries = data ? data.results : [];
   const displayedTVSeries = filterFunction(tvSeries);

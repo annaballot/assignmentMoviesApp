@@ -68,9 +68,10 @@ const TVSeriesCard: React.FC<TVSeriesCardProps> = ({tvseries}) => {
           <Grid item xs={6}>
             { <Typography variant="h6" component="p">
               <TravelExploreIcon fontSize="small" />
-              {tvseries.origin_country}
+              {tvseries.original_language}
             </Typography> }
           </Grid>
+         
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
               <StarRateIcon fontSize="small" />
