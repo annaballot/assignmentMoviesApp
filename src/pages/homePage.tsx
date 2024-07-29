@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PageTemplate from "../components/templateMovieListPage";
 import { getMovies } from "../api/tmdb-api";
 import useFiltering from "../hooks/useFiltering";
@@ -10,6 +10,7 @@ import { DiscoverMovies } from "../types/interfaces";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
 import AddToFavouritesIcon from '../components/cardIcons/addToFavourites'
+import { BaseMovieProps } from "../types/interfaces";
 
 
 const titleFiltering = {
@@ -23,7 +24,10 @@ const genreFiltering = {
   condition: genreFilter,
 };
 
+const sortByReleaseDate = (a: BaseMovieProps, b: BaseMovieProps) => new Date(b.release_date).getTime() - new Date(a.release_date).getTime();
+
 const HomePage: React.FC = () => {
+  const [sortOption, setSortOption] = useState<string>("none");
   const { data, error, isLoading, isError } = useQuery<DiscoverMovies, Error>("discover", getMovies);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [titleFiltering, genreFiltering]
@@ -47,15 +51,29 @@ const HomePage: React.FC = () => {
     setFilterValues(updatedFilterSet);
   };
 
+  const changeSortOption = (sort: string) => {
+    setSortOption(sort);
+  };
+
   const movies = data ? data.results : [];
   const displayedMovies = filterFunction(movies);
 
+  const sortedMovies = [...displayedMovies].sort((a, b) => {
+    switch (sortOption) {
+      case "none":
+        return 0;
+      case "release_date":
+        return sortByReleaseDate(a, b);
+      default:
+        return 0;
+    }
+  });
 
   return (
     <>
       <PageTemplate
         title="Discover Movies"
-        movies={displayedMovies}
+        movies={sortedMovies}
         action={(movie: BaseMovieProps) => {
           return <AddToFavouritesIcon {...movie} />
         }}
@@ -64,6 +82,7 @@ const HomePage: React.FC = () => {
         onFilterValuesChange={changeFilterValues}
         titleFilter={filterValues[0].value}
         genreFilter={filterValues[1].value}
+        onSort={changeSortOption}
       />
     </>
   );

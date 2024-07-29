@@ -70,6 +70,7 @@ const FilterMoviesCard: React.FC<FilterMoviesCardProps> = ({ titleFilter, genreF
             <FilterAltIcon fontSize="large" />
             Filter the movies.
           </Typography>
+          <InputLabel id="title-label">Search Title</InputLabel>
           <TextField
             sx={styles.formControl}
             id="filled-search"
@@ -79,8 +80,8 @@ const FilterMoviesCard: React.FC<FilterMoviesCardProps> = ({ titleFilter, genreF
             variant="filled"
             onChange={handleTextChange}
           />
+          <InputLabel id="genre-label">Genre</InputLabel>
           <FormControl sx={styles.formControl}>
-            <InputLabel id="genre-label">Genre</InputLabel>
             <Select
               labelId="genre-label"
               id="genre-select"
@@ -96,14 +97,6 @@ const FilterMoviesCard: React.FC<FilterMoviesCardProps> = ({ titleFilter, genreF
               })}
             </Select>
           </FormControl>
-        </CardContent>
-      </Card>
-      <Card sx={styles.root} variant="outlined">
-        <CardContent>
-          <Typography variant="h5" component="h1">
-            <SortIcon fontSize="large" />
-            Sort the movies.
-          </Typography>
         </CardContent>
       </Card>
     </>

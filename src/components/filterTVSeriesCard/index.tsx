@@ -77,6 +77,7 @@ const FilterTVSeriesCard: React.FC<FilterTVSeriessCardProps> = ({ nameFilter, ge
             <FilterAltIcon fontSize="large" />
             Filter the tvseries.
           </Typography>
+          <InputLabel id="title-label">Search Title</InputLabel>
           <TextField
             sx={styles.formControl}
             id="filled-search"
@@ -86,8 +87,8 @@ const FilterTVSeriesCard: React.FC<FilterTVSeriessCardProps> = ({ nameFilter, ge
             variant="filled"
             onChange={handleTextChange}
           />
+          <InputLabel id="genre-label">Genre</InputLabel>
           <FormControl sx={styles.formControl}>
-            <InputLabel id="genre-label">Genre</InputLabel>
             <Select
               labelId="genre-label"
               id="genre-select"
@@ -103,6 +104,7 @@ const FilterTVSeriesCard: React.FC<FilterTVSeriessCardProps> = ({ nameFilter, ge
               })}
             </Select>
           </FormControl>
+          <InputLabel id="lang-label">Search Original Language</InputLabel>
           <TextField
             sx={styles.formControl}
             id="filled-search-lng"
