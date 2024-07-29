@@ -34,7 +34,6 @@ const TVSeriesDiscoverPage: React.FC = () => {
   const { data, error, isLoading, isError } = useQuery<DiscoverTVSeries, Error>("discoverTV", getTVSeries);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [nameFiltering, genreFiltering, languageFiltering]
-    // [nameFiltering, genreFiltering]
   );
 
   console.log("nameFiltering");

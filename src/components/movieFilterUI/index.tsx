@@ -52,7 +52,7 @@ const MovieFilterUI: React.FC<MovieFilterUIProps> = ({ onFilterValuesChange, tit
                 onClick={() => setDrawerOpen(true)}
                 sx={styles.fab}
             >
-                Filter
+                Filter and Sort
             </Fab>
             <Drawer
                 anchor="left"

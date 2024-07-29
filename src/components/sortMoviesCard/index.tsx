@@ -1,19 +1,13 @@
-import React, { ChangeEvent } from "react";  // useState/useEffect redundant 
-import { FilterOption, GenreData } from "../../types/interfaces"; //include GenreData interface 
+import React from "react"; 
 import { SelectChangeEvent } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import TextField from "@mui/material/TextField";
-import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import SortIcon from "@mui/icons-material/Sort";
+
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { getGenres } from "../../api/tmdb-api";
-import { useQuery } from "react-query";
-import Spinner from '../spinner';
+
 
 
 const styles = {

@@ -37,7 +37,6 @@ interface TVSeriesFilterUIProps {
     languageFilter: string;
 }
 
-// const TVSeriesFilterUI: React.FC<TVSeriesFilterUIProps> = ({ onFilterValuesChange, nameFilter, genreFilter }) => {
 const TVSeriesFilterUI: React.FC<TVSeriesFilterUIProps> = ({ onFilterValuesChange, nameFilter, genreFilter, languageFilter }) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -49,7 +48,7 @@ const TVSeriesFilterUI: React.FC<TVSeriesFilterUIProps> = ({ onFilterValuesChang
                 onClick={() => setDrawerOpen(true)}
                 sx={styles.fab}
             >
-                Filter
+                Filter and Sort
             </Fab>
             <Drawer
                 anchor="left"
