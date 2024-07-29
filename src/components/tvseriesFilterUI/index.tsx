@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import FilterCard from "../filterTVSeriesCard";
+import SortCard from "../sortTVSeriesCard";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
 import { BaseTVSeriesProps } from "../../types/interfaces";
@@ -35,10 +36,17 @@ interface TVSeriesFilterUIProps {
     nameFilter: string;
     genreFilter: string;
     languageFilter: string;
+    onSort: (sortOption: string) => void;
 }
 
-const TVSeriesFilterUI: React.FC<TVSeriesFilterUIProps> = ({ onFilterValuesChange, nameFilter, genreFilter, languageFilter }) => {
+const TVSeriesFilterUI: React.FC<TVSeriesFilterUIProps> = ({ onFilterValuesChange, nameFilter, genreFilter, languageFilter, onSort }) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
+    const [sortOption, setSortOption] = useState<string>("none");
+
+    const handleSortChange = (sortOption: string) => {
+        onSort(sortOption);
+        setSortOption(sortOption); 
+      };
 
     return (
         <>
@@ -60,6 +68,10 @@ const TVSeriesFilterUI: React.FC<TVSeriesFilterUIProps> = ({ onFilterValuesChang
                     titleFilter={nameFilter}
                     genreFilter={genreFilter}
                     languageFilter={languageFilter}
+                />
+                <SortCard 
+                    sortOption={sortOption} 
+                    onSort={handleSortChange} 
                 />
             </Drawer>
         </>

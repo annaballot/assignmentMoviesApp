@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState }from "react";
 import PageTemplate from "../components/templateTVSeriesListPage";
 import { getTVSeries } from "../api/tmdb-api";
 import useFiltering from "../hooks/useFiltering";
@@ -10,7 +10,7 @@ import TVSeriesFilterUI, {
 import { DiscoverTVSeries } from "../types/interfaces";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
-
+import { BaseTVSeriesProps } from "../types/interfaces";
 
 const nameFiltering = {
   name: "name",
@@ -29,8 +29,11 @@ const languageFiltering = {
   condition: languageFilter,
 };
 
-const TVSeriesDiscoverPage: React.FC = () => {
+const sortByPopularity = (a: BaseTVSeriesProps, b: BaseTVSeriesProps) => a.vote_average - b.vote_average;
+const sortByName = (a: BaseTVSeriesProps, b: BaseTVSeriesProps) => a.name.localeCompare(b.name);
 
+const TVSeriesDiscoverPage: React.FC = () => {
+  const [sortOption, setSortOption] = useState<string>("none");
   const { data, error, isLoading, isError } = useQuery<DiscoverTVSeries, Error>("discoverTV", getTVSeries);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [nameFiltering, genreFiltering, languageFiltering]
@@ -66,16 +69,31 @@ const TVSeriesDiscoverPage: React.FC = () => {
       }
   };
 
+  const changeSortOption = (sort: string) => {
+    setSortOption(sort);
+  };
 
   const tvSeries = data ? data.results : [];
   const displayedTVSeries = filterFunction(tvSeries);
 
+  const sortedTVSeries = [...displayedTVSeries].sort((a, b) => {
+    switch (sortOption) {
+      case "none":
+        return 0;
+      case "release_date":
+        return sortByPopularity(a, b);
+        case "name":
+          return sortByName(a, b);
+      default:
+        return 0;
+    }
+  });
 
   return (
     <>
       <PageTemplate
         title="Discover TV Series"
-        tvseries={displayedTVSeries}
+        tvseries={sortedTVSeries}
 
       />
        <TVSeriesFilterUI
@@ -83,6 +101,7 @@ const TVSeriesDiscoverPage: React.FC = () => {
         nameFilter={filterValues[0].value}
         genreFilter={filterValues[1].value}
         languageFilter={filterValues[2].value}
+        onSort={changeSortOption}
       /> 
     </>
   );
