@@ -25,6 +25,7 @@ const genreFiltering = {
 };
 
 const sortByReleaseDate = (a: BaseMovieProps, b: BaseMovieProps) => new Date(b.release_date).getTime() - new Date(a.release_date).getTime();
+const sortByTitle = (a: BaseMovieProps, b: BaseMovieProps) => a.title.localeCompare(b.title);
 
 const HomePage: React.FC = () => {
   const [sortOption, setSortOption] = useState<string>("none");
@@ -64,6 +65,8 @@ const HomePage: React.FC = () => {
         return 0;
       case "release_date":
         return sortByReleaseDate(a, b);
+        case "title":
+          return sortByTitle(a, b);
       default:
         return 0;
     }

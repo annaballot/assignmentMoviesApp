@@ -56,6 +56,9 @@ const SortMoviesCard: React.FC<SortMovieCardProps> = ({ onSort, sortOption  }) =
                 <MenuItem key="release_date" value="release_date">
                 Release Date
                 </MenuItem>
+                <MenuItem key="title" value="title">
+                Title
+                </MenuItem>
             </Select>
           </FormControl>
         </CardContent>
