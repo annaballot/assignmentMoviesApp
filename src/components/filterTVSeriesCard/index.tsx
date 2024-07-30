@@ -30,7 +30,7 @@ const styles = {
 };
 
 interface FilterTVSeriessCardProps {
-  onUserInput: (f: FilterOption, s: string)  => void; // Add this line
+  onUserInput: (f: FilterOption, s: string)  => void; 
   nameFilter: string;
   genreFilter: string;
   languageFilter: string;

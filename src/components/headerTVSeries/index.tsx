@@ -4,7 +4,6 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import HomeIcon from "@mui/icons-material/Home";
 import { TVSeriesDetailsProps } from "../../types/interfaces"; 
 import Avatar from "@mui/material/Avatar";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -35,11 +34,6 @@ const TVSeriesHeader: React.FC<TVSeriesDetailsProps> = (tvseries) => {
 
       <Typography variant="h4" component="h3">
         {tvseries.name}{"   "}
-        {/* <a href={tvseries.homepage}>
-          <HomeIcon color="primary"  fontSize="large"/>
-        </a> */}
-        <br />
-        {/* <span>{`${tvseries.tagline}`} </span> */}
       </Typography>
       {
           isFavourite ? (

@@ -11,7 +11,6 @@ const AddToPlaylistIcon: React.FC<BaseMovieProps> = (movie) => {
     e.preventDefault();
     context.addToMustWatch(movie);
     console.log("added movie to must watch list: " + movie)
-    // console.log(mustWatch)
   };
 
 return (
