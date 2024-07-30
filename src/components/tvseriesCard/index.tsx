@@ -12,8 +12,6 @@ import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png';
 import { BaseTVSeriesProps } from "../../types/interfaces"; 
 import { Link } from "react-router-dom";
-// import Avatar from "@mui/material/Avatar";
-// import { TVSeriesContext } from "../../contexts/tvSeriesContext";
 
 const styles = {
   card: { maxWidth: 345 },
@@ -21,27 +19,16 @@ const styles = {
   avatar: {
     backgroundColor: "rgb(255, 0, 0)",
   },
-  // avatar2: {
-  //   backgroundColor: "rgb(0, 0, 255)",
-  // },
+
 };
 
-// interface TVSeriesListProps {
-//   tvseries:ListedTVSeries,
-//   action: (m: ListedTVSeries) => React.ReactNode;
-// }
+
 
 interface TVSeriesCardProps {
   tvseries: BaseTVSeriesProps;
-  // action: (m: BaseTVSeriesProps) => React.ReactNode;
 }
 
 const TVSeriesCard: React.FC<TVSeriesCardProps> = ({tvseries}) => {
-
-
- 
-
-
 
   return (
     <Card sx={styles.card}>

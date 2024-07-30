@@ -29,8 +29,10 @@ const languageFiltering = {
   condition: languageFilter,
 };
 
-const sortByPopularity = (a: BaseTVSeriesProps, b: BaseTVSeriesProps) => a.vote_average - b.vote_average;
+const sortByPopularity = (a: BaseTVSeriesProps, b: BaseTVSeriesProps) => b.vote_average - a.vote_average;
 const sortByName = (a: BaseTVSeriesProps, b: BaseTVSeriesProps) => a.name.localeCompare(b.name);
+
+
 
 const TVSeriesDiscoverPage: React.FC = () => {
   const [sortOption, setSortOption] = useState<string>("none");
@@ -80,7 +82,7 @@ const TVSeriesDiscoverPage: React.FC = () => {
     switch (sortOption) {
       case "none":
         return 0;
-      case "release_date":
+      case "vote_average":
         return sortByPopularity(a, b);
         case "name":
           return sortByName(a, b);
