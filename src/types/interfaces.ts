@@ -152,3 +152,10 @@ export interface BaseMovieProps {
   }
 
 
+  export interface fantasyMovie {
+    title: string,
+    overview: string,
+    mainGenre: string,
+    budget: number,
+  }
+
