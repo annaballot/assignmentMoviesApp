@@ -5,7 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import { MoviesContext } from "../../contexts/moviesContext";
+import { FantasyMoviesContext } from "../../contexts/fantasyMoviesContext";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles";
 import { fantasyMovie, GenreData } from "../../types/interfaces";
@@ -22,7 +22,7 @@ const fantasyMovieForm: React.FC = () => {
         defaultValues: {
           title: "",
           overview: "",
-          mainGenre: "",
+          genre: "",
           budget: 0,
         }
       };
@@ -35,13 +35,13 @@ const fantasyMovieForm: React.FC = () => {
       } = useForm<fantasyMovie>(defaultValues);
     
       const navigate = useNavigate();
-      const context = useContext(MoviesContext);
-      // const [rating, setRating] = useState(3);
+      // const context = useContext(FantasyMoviesContext);
+      const [genre, setGenre] = useState(3);
       const [open, setOpen] = useState(false);  //NEW
     
     
       const handleGenreChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setRating(Number(event.target.value));
+        setGenre(Number(event.target.value));
       };
 
       if (isLoading) {
@@ -59,10 +59,13 @@ const fantasyMovieForm: React.FC = () => {
 
     
       const onSubmit: SubmitHandler<fantasyMovie> = (fantasyMovie) => {
-        fantasyMovie.movieId = movie.id;
-        fantasyMovie.rating = rating;
-        context.addfantasyMovie(movie, fantasyMovie);
-        setOpen(true); 
+        // fantasyMovie.title = title;
+        // fantasyMovie.rating = rating;
+        .then(res => fantasyMovie.json())
+        fantasyMovie
+
+        // context.addfantasyMovie(movie, fantasyMovie);
+        // setOpen(true); 
       };
     
       return (
@@ -134,7 +137,7 @@ const fantasyMovieForm: React.FC = () => {
                   select
                   variant="outlined"
                   label="Genre Select"
-                  value="average"
+                  value={genre}
                   onChange={handleGenreChange}
                   helperText="Don't forget your genre"
                 >
