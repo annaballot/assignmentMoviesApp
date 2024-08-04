@@ -8,12 +8,16 @@ import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { MoviesContext } from "../../contexts/moviesContext";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles";
-import { fantasyMovie } from "../../types/interfaces";
-import Snackbar from "@mui/material/Snackbar";
+import { fantasyMovie, GenreData } from "../../types/interfaces";
+import genres from "./genreCategories";
 import Alert from "@mui/material/Alert";
+import { useQuery } from "react-query";
+import { getGenres } from "../../api/tmdb-api";
+import Spinner from '../spinner';
 
 
-const fantasyMovieForm: React.FC<fantasyMovie> = () => {
+const fantasyMovieForm: React.FC = () => {
+  const { data, error, isLoading, isError } = useQuery<GenreData, Error>("genres", getGenres);
     const defaultValues = {
         defaultValues: {
           title: "",
@@ -32,18 +36,27 @@ const fantasyMovieForm: React.FC<fantasyMovie> = () => {
     
       const navigate = useNavigate();
       const context = useContext(MoviesContext);
-      const [rating, setRating] = useState(3);
+      // const [rating, setRating] = useState(3);
       const [open, setOpen] = useState(false);  //NEW
     
     
-      const handleRatingChange = (event: ChangeEvent<HTMLInputElement>) => {
+      const handleGenreChange = (event: ChangeEvent<HTMLInputElement>) => {
         setRating(Number(event.target.value));
       };
 
-      const handleSnackClose = () => {
-        setOpen(false);
-        navigate("/movies/fantasy");
-      };
+      if (isLoading) {
+        return <Spinner />;
+      }
+      if (isError) {
+        return <h1>{(error as Error).message}</h1>;
+      }
+
+      const genres = data?.genres || [];
+  if (genres[0].name !== "All") {
+    genres.unshift({ id: "0", name: "All" });
+  }
+
+
     
       const onSubmit: SubmitHandler<fantasyMovie> = (fantasyMovie) => {
         fantasyMovie.movieId = movie.id;
@@ -55,29 +68,13 @@ const fantasyMovieForm: React.FC<fantasyMovie> = () => {
       return (
         <Box component="div" sx={styles.root}>
           <Typography component="h2" variant="h3">
-            Write a fantasyMovie
+            Create a Fantasy Movie
           </Typography>
-          <Snackbar
-        sx={styles.snack}
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
-        open={open}
-         onClose={handleSnackClose}
-      >
-        <Alert
-          severity="success"
-          variant="filled"
-          onClose={handleSnackClose}
-        >
-          <Typography variant="h4">
-            Thank you for submitting a fantasyMovie
-          </Typography>
-        </Alert>
-      </Snackbar>
           <form style={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
             <Controller
-              name="author"
+              name="title"
               control={control}
-              rules={{ required: "Name is required" }}
+              rules={{ required: "Title is required" }}
               defaultValue=""
               render={({ field: { onChange, value } }) => (
                 <TextField
@@ -87,23 +84,23 @@ const fantasyMovieForm: React.FC<fantasyMovie> = () => {
                   required
                   onChange={onChange}
                   value={value}
-                  id="author"
-                  label="Author's name"
+                  id="title"
+                  label="Title of Movie"
                   autoFocus
                 />
               )}
             />
-            {errors.author && (
+            {errors.title && (
               <Typography variant="h6" component="p">
-                {errors.author.message}
+                {errors.title.message}
               </Typography>
             )}
             <Controller
-              name="content"
+              name="overview"
               control={control}
               rules={{
-                required: "fantasyMovie cannot be empty.",
-                minLength: { value: 10, message: "fantasyMovie is too short" },
+                required: "Overview cannot be empty.",
+                minLength: { value: 10, message: "Overview is too short" },
               }}
               defaultValue=""
               render={({ field: { onChange, value } }) => (
@@ -114,38 +111,40 @@ const fantasyMovieForm: React.FC<fantasyMovie> = () => {
                   fullWidth
                   value={value}
                   onChange={onChange}
-                  label="fantasyMovie text"
-                  id="fantasyMovie"
+                  label="overview text"
+                  id="overview"
                   multiline
-                  minRows={10}
+                  minRows={5}
                 />
               )}
             />
-            {errors.content && (
+            {errors.overview && (
               <Typography variant="h6" component="p">
-                {errors.content.message}
+                {errors.overview.message}
               </Typography>
             )}
     
             <Controller
               control={control}
-              name="rating"
+              name="genre"
               render={({ field }) => (
                 <TextField
                   {...field}
-                  id="select-rating"
+                  id="select-genre"
                   select
                   variant="outlined"
-                  label="Rating Select"
-                  value={rating}
-                  onChange={handleRatingChange}
-                  helperText="Don't forget your rating"
+                  label="Genre Select"
+                  value="average"
+                  onChange={handleGenreChange}
+                  helperText="Don't forget your genre"
                 >
-                  {ratings.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
+                {genres.map((genre) => {
+                return (
+                  <MenuItem key={genre.id} value={genre.id}>
+                    {genre.name}
+                  </MenuItem>
+                );
+              })}
                 </TextField>
               )}
             />
@@ -166,8 +165,8 @@ const fantasyMovieForm: React.FC<fantasyMovie> = () => {
                 sx={styles.submit}
                 onClick={() => {
                   reset({
-                    author: "",
-                    content: "",
+                    title: "",
+                    overview: "",
                   });
                 }}
               >

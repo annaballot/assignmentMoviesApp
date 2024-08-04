@@ -7,7 +7,7 @@ import FantasyMovieForm from "../components/fantasyMovieForm";
 // import Spinner from "../components/spinner";
 // import { BaseMovieProps, MovieDetailsProps } from "../types/interfaces";
 
-const WriteReviewPage: React.FC = () => {
+const AddFantasyPage: React.FC = () => {
     // const location = useLocation()
     // const { fantasyMovieId } = location.state;
     // const { data: fantasyMovie, error, isLoading, isError } = useQuery<MovieDetailsProps, Error>(
@@ -22,17 +22,35 @@ const WriteReviewPage: React.FC = () => {
     // if (isError) {
     //     return <h1>{error.message}</h1>;
     // }
+
+
+
+    // return (
+    //     <>
+    //         {fantasyMovie ? (
+    //                 <PageTemplate fantasyMovie={fantasyMovie}>
+    //                     <FantasyMovieForm {...fantasyMovie} />
+    //                 </PageTemplate>
+    //         ) : (
+    //             <p>Waiting for fantasy Movie details</p>
+    //         )}
+    //     </>
+    // );
+
+
     return (
         <>
-            {fantasyMovie ? (
-                    <PageTemplate fantasyMovie={fantasyMovie}>
-                        <FantasyMovieForm {...fantasyMovie} />
-                    </PageTemplate>
-            ) : (
-                <p>Waiting for fantasy Movie details</p>
-            )}
+
+            <PageTemplate>
+               
+                <FantasyMovieForm/>
+            </PageTemplate>
+          
         </>
     );
+
+
+
 };
 
-export default WriteReviewPage;
+export default AddFantasyPage;

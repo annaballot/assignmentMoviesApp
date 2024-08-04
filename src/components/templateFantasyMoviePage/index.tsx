@@ -25,7 +25,7 @@ interface TemplateMoviePageProps {
     children: React.ReactElement;
 }
 
-const TemplateFantasyMoviePage: React.FC<TemplateMoviePageProps> = () => {
+const TemplateFantasyMoviePage: React.FC<TemplateMoviePageProps> = ({children}) => {
 // const TemplateFantasyMoviePage: React.FC<TemplateMoviePageProps> = ({movie, children}) => {
     // const { data, error, isLoading, isError } = useQuery<MovieImage[], Error>(
     //     ["images", movie.id],
@@ -49,9 +49,9 @@ const TemplateFantasyMoviePage: React.FC<TemplateMoviePageProps> = () => {
             {/* <MovieHeader {...movie} /> */}
             { "Test Fantasy Movie Page" }
 
-            {/* <Grid container spacing={5} style={{ padding: "15px" }}>
+            {<Grid container spacing={5} style={{ padding: "15px" }}>
                 <Grid item xs={3}>
-                    <div>
+                    {/* <div>
                         <ImageList cols={1}>
                             {images.map((image: MovieImage) => (
                                 <ImageListItem
@@ -66,13 +66,15 @@ const TemplateFantasyMoviePage: React.FC<TemplateMoviePageProps> = () => {
                                 </ImageListItem>
                             ))}
                         </ImageList>
-                    </div>
+                    </div> */}
                 </Grid>
 
                 <Grid item xs={9}>
                     {children}
                 </Grid>
-            </Grid> */}
+
+                
+            </Grid> }
         </>
     );
 };
