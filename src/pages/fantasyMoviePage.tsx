@@ -1,13 +1,13 @@
 import React from "react";
 import PageTemplate from "../components/templateFantasyMoviePage";
-import FantasyMovieForm from "../components/fantasyMovieForm";
+import FantasyMovieDisplay from "../components/fantasyMovie";
 // import { useLocation } from "react-router-dom";
 // import { useQuery } from "react-query";
 // import { getMovie } from "../api/tmdb-api";
 // import Spinner from "../components/spinner";
 // import { BaseMovieProps, MovieDetailsProps } from "../types/interfaces";
 
-const AddFantasyPage: React.FC = () => {
+const FantasyMoviePage: React.FC = () => {
     // const location = useLocation()
     // const { fantasyMovieId } = location.state;
     // const { data: fantasyMovie, error, isLoading, isError } = useQuery<MovieDetailsProps, Error>(
@@ -43,7 +43,7 @@ const AddFantasyPage: React.FC = () => {
 
             <PageTemplate>
                
-                <FantasyMovieForm/>
+                <FantasyMovieDisplay/>
             </PageTemplate>
           
         </>
@@ -53,4 +53,4 @@ const AddFantasyPage: React.FC = () => {
 
 };
 
-export default AddFantasyPage;
+export default FantasyMoviePage;

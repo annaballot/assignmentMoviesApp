@@ -26,47 +26,13 @@ interface TemplateMoviePageProps {
 }
 
 const TemplateFantasyMoviePage: React.FC<TemplateMoviePageProps> = ({children}) => {
-// const TemplateFantasyMoviePage: React.FC<TemplateMoviePageProps> = ({movie, children}) => {
-    // const { data, error, isLoading, isError } = useQuery<MovieImage[], Error>(
-    //     ["images", movie.id],
-    //     () => getMovieImages(movie.id)
-    // );
-
-    // if (isLoading) {
-    //     return <Spinner />;
-    // }
-
-    // if (isError) {
-    //     return <h1>{(error
-
-    //     ).message}</h1>;
-    // }
-
-    // const images = data as MovieImage[];
 
     return (
         <>
-            {/* <MovieHeader {...movie} /> */}
-            { "Test Fantasy Movie Page" }
 
             {<Grid container spacing={5} style={{ padding: "15px" }}>
-                <Grid item xs={3}>
-                    {/* <div>
-                        <ImageList cols={1}>
-                            {images.map((image: MovieImage) => (
-                                <ImageListItem
-                                    key={image.file_path}
-                                    sx={styles.gridListTile}
-                                    cols={1}
-                                >
-                                    <img
-                                        src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
-                                        alt={'Image alternative'}
-                                    />
-                                </ImageListItem>
-                            ))}
-                        </ImageList>
-                    </div> */}
+                <Grid item xs={1}>
+                  
                 </Grid>
 
                 <Grid item xs={9}>
