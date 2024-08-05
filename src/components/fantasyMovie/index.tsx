@@ -1,11 +1,10 @@
-import React, { useContext, useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import styles from "./styles";
 import { fantasyMovie, GenreData } from "../../types/interfaces";
 import { useQuery } from "react-query";
@@ -15,7 +14,7 @@ import Spinner from "../spinner";
 let isSubmitted = false;
 let myFantasyMovieTitle = "";
 let myFantasyMovieOverview = "";
-let myFantasyMovieGenre = 0;
+let myFantasyMovieGenre = "";
 let myFantasyMovieBudget = 0;
 
 const FantasyMovieDisplay: React.FC = () => {
@@ -27,7 +26,7 @@ const FantasyMovieDisplay: React.FC = () => {
     defaultValues: {
       title: "",
       overview: "",
-      genre: null,
+      genre: "",
       budget: 0,
     },
   };
@@ -39,12 +38,10 @@ const FantasyMovieDisplay: React.FC = () => {
     reset,
   } = useForm<fantasyMovie>(defaultValues);
 
-  const navigate = useNavigate();
-  const [genre, setGenre] = useState(0);
-  const [open, setOpen] = useState(false); //NEW
+  const [genre, setGenre] = useState("");
 
   const handleGenreChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setGenre(Number(event.target.value));
+    setGenre(event.target.value);
   };
 
   if (isLoading) {
@@ -59,28 +56,25 @@ const FantasyMovieDisplay: React.FC = () => {
     genres.unshift({ id: "0", name: "All" });
   }
 
-  console.log("isSubmitted");
-  console.log(isSubmitted);
-
   const onSubmit: SubmitHandler<fantasyMovie> = (fantasyMovie) => {
     isSubmitted = true;
-    console.log("isSubmitted");
-    console.log(isSubmitted);
     fantasyMovie.genre = genre;
 
     myFantasyMovieTitle = fantasyMovie.title;
     myFantasyMovieOverview = fantasyMovie.overview;
     myFantasyMovieGenre = fantasyMovie.genre;
     myFantasyMovieBudget = fantasyMovie.budget;
-
-    // console.log("myFantasyMovie");
-    // console.log(myFantasyMovie);
   };
-
 
   if (isSubmitted) {
     return (
       <div>
+        <Typography component="h2" variant="h3">
+          My Fantasy Movie
+        </Typography>
+        <br></br>
+        <br></br>
+
         <Typography variant="h5" component="h3">
           Title
         </Typography>
@@ -115,8 +109,6 @@ const FantasyMovieDisplay: React.FC = () => {
         <Typography variant="h6" component="p">
           {myFantasyMovieBudget}
         </Typography>
-
-
       </div>
     );
   } else {
@@ -179,8 +171,6 @@ const FantasyMovieDisplay: React.FC = () => {
             </Typography>
           )}
 
-   
-
           <Controller
             control={control}
             name="genre"
@@ -197,7 +187,7 @@ const FantasyMovieDisplay: React.FC = () => {
               >
                 {genres.map((genre) => {
                   return (
-                    <MenuItem key={genre.id} value={genre.id}>
+                    <MenuItem key={genre.id} value={genre.name}>
                       {genre.name}
                     </MenuItem>
                   );
@@ -206,10 +196,9 @@ const FantasyMovieDisplay: React.FC = () => {
             )}
           />
 
+          <br></br>
 
-  <br></br>
-
-<Controller
+          <Controller
             name="budget"
             control={control}
             rules={{ required: "Budget is required" }}
@@ -234,8 +223,6 @@ const FantasyMovieDisplay: React.FC = () => {
               {errors.budget.message}
             </Typography>
           )}
-
-          
 
           <Box>
             <Button
