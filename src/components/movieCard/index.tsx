@@ -23,15 +23,9 @@ const styles = {
   avatar: {
     backgroundColor: "rgb(255, 0, 0)",
   },
-  // avatar2: {
-  //   backgroundColor: "rgb(0, 0, 255)",
-  // },
 };
 
-interface MovieListProps {
-  movie:ListedMovie,
-  action: (m: ListedMovie) => React.ReactNode;
-}
+
 
 interface MovieCardProps {
   movie: BaseMovieProps;

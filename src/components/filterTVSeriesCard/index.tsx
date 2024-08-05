@@ -1,5 +1,5 @@
-import React, { ChangeEvent } from "react";  // useState/useEffect redundant 
-import { FilterOption, GenreData } from "../../types/interfaces"; //include GenreData interface 
+import React, { ChangeEvent } from "react"; // useState/useEffect redundant
+import { FilterOption, GenreData } from "../../types/interfaces"; //include GenreData interface
 import { SelectChangeEvent } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -13,8 +13,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { getGenres } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
-import Spinner from '../spinner';
-
+import Spinner from "../spinner";
 
 const styles = {
   root: {
@@ -30,14 +29,22 @@ const styles = {
 };
 
 interface FilterTVSeriessCardProps {
-  onUserInput: (f: FilterOption, s: string)  => void; 
+  onUserInput: (f: FilterOption, s: string) => void;
   nameFilter: string;
   genreFilter: string;
   languageFilter: string;
 }
 
-const FilterTVSeriesCard: React.FC<FilterTVSeriessCardProps> = ({ nameFilter, genreFilter, languageFilter, onUserInput }) => {
-  const { data, error, isLoading, isError } = useQuery<GenreData, Error>("genres", getGenres);
+const FilterTVSeriesCard: React.FC<FilterTVSeriessCardProps> = ({
+  nameFilter,
+  genreFilter,
+  languageFilter,
+  onUserInput,
+}) => {
+  const { data, error, isLoading, isError } = useQuery<GenreData, Error>(
+    "genres",
+    getGenres
+  );
 
   if (isLoading) {
     return <Spinner />;
@@ -50,24 +57,28 @@ const FilterTVSeriesCard: React.FC<FilterTVSeriessCardProps> = ({ nameFilter, ge
     genres.unshift({ id: "0", name: "All" });
   }
 
-  const handleChange = (e: SelectChangeEvent, type: FilterOption, value: string) => {
-    e.preventDefault()
-      onUserInput(type, value)
+  const handleChange = (
+    e: SelectChangeEvent,
+    type: FilterOption,
+    value: string
+  ) => {
+    e.preventDefault();
+    onUserInput(type, value);
   };
 
   const handleTextChange = (e: ChangeEvent<HTMLInputElement>) => {
-    handleChange(e, "name", e.target.value)
-  }
+    handleChange(e, "name", e.target.value);
+  };
 
   const handleGenreChange = (e: SelectChangeEvent) => {
-    handleChange(e, "genre", e.target.value)
+    handleChange(e, "genre", e.target.value);
   };
 
   const handleLanguageChange = (e: ChangeEvent<HTMLInputElement>) => {
     console.log(handleLanguageChange);
     console.log(e);
-    handleChange(e, "original_language", e.target.value)
-  }
+    handleChange(e, "original_language", e.target.value);
+  };
 
   return (
     <>

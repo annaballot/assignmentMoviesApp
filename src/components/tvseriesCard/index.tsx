@@ -6,11 +6,11 @@ import CardMedia from "@mui/material/CardMedia";
 import CardHeader from "@mui/material/CardHeader";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import TravelExploreIcon from '@mui/icons-material/TravelExplore';
+import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import Grid from "@mui/material/Grid";
-import img from '../../images/film-poster-placeholder.png';
-import { BaseTVSeriesProps } from "../../types/interfaces"; 
+import img from "../../images/film-poster-placeholder.png";
+import { BaseTVSeriesProps } from "../../types/interfaces";
 import { Link } from "react-router-dom";
 
 const styles = {
@@ -19,22 +19,16 @@ const styles = {
   avatar: {
     backgroundColor: "rgb(255, 0, 0)",
   },
-
 };
-
-
 
 interface TVSeriesCardProps {
   tvseries: BaseTVSeriesProps;
 }
 
-const TVSeriesCard: React.FC<TVSeriesCardProps> = ({tvseries}) => {
-
+const TVSeriesCard: React.FC<TVSeriesCardProps> = ({ tvseries }) => {
   return (
     <Card sx={styles.card}>
-      
       <CardHeader
-
         title={
           <Typography variant="h5" component="p">
             {tvseries.name}{" "}
@@ -53,12 +47,14 @@ const TVSeriesCard: React.FC<TVSeriesCardProps> = ({tvseries}) => {
       <CardContent>
         <Grid container>
           <Grid item xs={6}>
-            { <Typography variant="h6" component="p">
-              <TravelExploreIcon fontSize="small" />
-              {tvseries.original_language}
-            </Typography> }
+            {
+              <Typography variant="h6" component="p">
+                <TravelExploreIcon fontSize="small" />
+                {tvseries.original_language}
+              </Typography>
+            }
           </Grid>
-         
+
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
               <StarRateIcon fontSize="small" />
@@ -74,9 +70,8 @@ const TVSeriesCard: React.FC<TVSeriesCardProps> = ({tvseries}) => {
           </Button>
         </Link>
       </CardActions>
-
     </Card>
   );
-}
+};
 
 export default TVSeriesCard;
