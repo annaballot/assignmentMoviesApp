@@ -6,18 +6,21 @@ understanding of the React framework and ecosystem.
 Below I will list out all additional features that I have added in addition to what was covered in the labs.
 
 ## UI - New views/pages (3+).
-- List view (e.g. Most popular movies, Actors, Similar movies, TV Series).
-- Detail view (e.g. Actor Bio, TV Series).
+- I added a 'My Fantasy Movie' page which has a form to enter the details of the your fantasy movie, and when submitted it will display it back
+- Added a 'Discover TV Series' page, along with a TV Series Details page which can be accessed by clicking on the 'More info' button on the TV Series list
+- I added a 'Similar Movies' page, so when you click on the 'Similar Movies' button on any of the movies cards in the 'Disover Movies' page, it will bring 
+  you to a page showing all of the movies that are similar (using a parameterised URL, and the 'Similar Movies' TMDB endpoint) 
 
 ## Routing - New routes.
-- At least one additional parameterised URL.
-- Data hyperlinking.
+- Parameterised URL used for TV Series Details
+- Parameretised URL used for 'Similar Movies' page
+- ????Data hyperlinking????
 
 ## Data Model.
-- An additional data entity type, e.g. Actor, TV series.
-- Server state Caching.
+- Added TV series as an additional data entity type
+- Implemented Server state Caching everywhere where there is data called from a TMDB endpoint.
 
 ## Functionality.
 - Additional filtering and/or sorting criteria.
-- My fantasy movie. (Basic) (*1)
-- Other.
+- My fantasy movie Implemented which includes a feature to add your own fantast movie, and when submitted, it displays it on the page. 
+  This also gets a full list of genres from the TMDB endpoint to allow the user to select a valid genre
