@@ -15,6 +15,11 @@ import { useQuery } from "react-query";
 import { getGenres } from "../../api/tmdb-api";
 import Spinner from '../spinner';
 
+//create movie isSubmitted 
+
+let isSubmitted = false;
+let myFantasyMovie = "";
+
 
 const fantasyMovieForm: React.FC = () => {
   const { data, error, isLoading, isError } = useQuery<GenreData, Error>("genres", getGenres);
@@ -22,7 +27,7 @@ const fantasyMovieForm: React.FC = () => {
         defaultValues: {
           title: "",
           overview: "",
-          genre: "",
+          genre: null,
           budget: 0,
         }
       };
@@ -34,12 +39,16 @@ const fantasyMovieForm: React.FC = () => {
         reset,
       } = useForm<fantasyMovie>(defaultValues);
     
+      
+
       const navigate = useNavigate();
       // const context = useContext(FantasyMoviesContext);
       const [genre, setGenre] = useState(3);
       const [open, setOpen] = useState(false);  //NEW
     
     
+
+
       const handleGenreChange = (event: ChangeEvent<HTMLInputElement>) => {
         setGenre(Number(event.target.value));
       };
@@ -56,19 +65,51 @@ const fantasyMovieForm: React.FC = () => {
     genres.unshift({ id: "0", name: "All" });
   }
 
-
+  console.log("isSubmitted");
+  console.log(isSubmitted);
     
       const onSubmit: SubmitHandler<fantasyMovie> = (fantasyMovie) => {
+       isSubmitted = true;
+       console.log("isSubmitted");
+       console.log(isSubmitted);
         // fantasyMovie.title = title;
-        // fantasyMovie.rating = rating;
-        .then(res => fantasyMovie.json())
-        fantasyMovie
+        fantasyMovie.genre = genre;
+
+        myFantasyMovie = fantasyMovie.title;
+console.log("myFantasyMovie");
+console.log(myFantasyMovie);
 
         // context.addfantasyMovie(movie, fantasyMovie);
         // setOpen(true); 
       };
-    
+   
+      if (isSubmitted) {
+        return (
+        // <div><p>"submitted"</p>
+        // <p>{myFantasyMovie}</p></div>
+        <div>
+    <Typography variant="h5" component="h3">
+    Title
+  </Typography>
+
+  <Typography variant="h6" component="p">
+    {myFantasyMovie}
+  </Typography>
+
+  <Typography variant="h5" component="h3">
+    Overview
+  </Typography>
+
+  <Typography variant="h6" component="p">
+    {myFantasyMovie}
+  </Typography>
+  </div>
+        
+        )
+        } 
+        else {
       return (
+        // <div><p>"text"</p></div>
         <Box component="div" sx={styles.root}>
           <Typography component="h2" variant="h3">
             Create a Fantasy Movie
@@ -177,8 +218,12 @@ const fantasyMovieForm: React.FC = () => {
               </Button>
             </Box>
           </form>
+          
         </Box>
-      );
+
+              
+
+      ); }
     };
     
 
