@@ -4,7 +4,7 @@
 
 __Name:__ Anna Ballot
 
-__Video Demo:__ .....UPDATE URL of your YouTube video demonstration ....
+__Video Demo:__ https://youtu.be/47ae3Guv764
 
 This repository contains an implementation of the Movie Fans Web Application using the React library. 
 
@@ -25,7 +25,10 @@ This repository contains an implementation of the Movie Fans Web Application usi
 
 ### Setup requirements.
 
-[ Outline any non-standard setup steps necessary to run your app locally after cloning the repo.]
+    npm install
+
+    In VS Code, in the project base folder, create a new file called .env with the following content:
+        VITE_TMDB_KEY=.... your API key value ...
 
 ### API endpoints
 
@@ -38,25 +41,21 @@ This repository contains an implementation of the Movie Fans Web Application usi
 
 ### Routing
 
-[ List the __new routes__ supported by your app and state the associated page.]
-
 + /tvseries/discover  - displays list of TV Series
 + /tvseries/:id - shows detailed view of individual TV Series (parameterised)
-+ /movies/:id/similar - shows list of similar movies (parameterised from the movie ID on the page that you clicked
++ /movies/:id/similar - shows list of similar movies (parameterised from the movie ID on the page that you clicked)
 + /movies/fantasy - Allows user to add a fantasy movie, or display the fantasy movie when already added
+
 
 
 ### Third Party Components/Integration
 
-[Describe the level of  integration/use or other API's or third party components]
-
 + React Components
-+ Third party/custom APIs
-+ Authentication
-+ etc...
++ TMDB API
+
+
 
 ### Independent learning (If relevant)
 
-Itemize the technologies/techniques you researched independently and adopted in your project, 
-i.e. aspects not covered in the lectures/labs. Include the source code filenames that illustrate these 
-(we do not require code excerpts) and provide references to the online resources that helped you (articles/blogs).
++ React Sorting:    https://owlcation.com/stem/creating-a-sortable-list-in-react-js
++ TMDB Endpoints:   https://developer.themoviedb.org/reference/
